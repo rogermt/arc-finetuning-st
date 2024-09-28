@@ -1,9 +1,6 @@
 name: Sync to Hugging Face Space
 
 on:
-  push:name: Sync to Hugging Face Space
-
-on:
   push:
     branches:
       - main  # or your default branch name
