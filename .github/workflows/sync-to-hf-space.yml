@@ -24,23 +24,3 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git push https://HF_USERNAME:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/rogermt/Arc-Finetuning main
-
-    branches:
-      - main  # or your default branch name
-
-jobs:
-  sync-to-hub:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          lfs: true
-      
-      - name: Push to Hugging Face Space
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git push https://HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/rogermt/Arc-Finetuning main
