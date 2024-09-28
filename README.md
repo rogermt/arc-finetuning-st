@@ -1,3 +1,14 @@
+---
+title: rc Finetuning
+sdk: streamlit
+sdk_version: 1.38.0
+emoji: 🏃
+colorFrom: blue
+colorTo: pink
+pinned: false
+short_description: ARC Task (LLM) Solver With Human Input
+---
+
 # ARC Task (LLM) Solver With Human Input
 
 The Abstraction and Reasoning Corpus ([ARC](https://github.com/fchollet/ARC-AGI)) for Artificial General Intelligence
@@ -188,11 +199,6 @@ maximum number of async calls allowed to be made to OpenAI API at any given mome
 Finally, `sleep` is the amount of time in seconds the execution halts before moving
 onto the next batch of test cases.
 
- metadata
-title: Arc Finetuning
-emoji: 🏃
-colorFrom: blue
-colorTo: pink
 sdk: streamlit
 sdk_version: 1.38.0
 app_file: app.py
