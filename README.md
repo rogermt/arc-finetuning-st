@@ -198,3 +198,4 @@ sdk_version: 1.38.0
 app_file: app.py
 pinned: false
 short_description: ARC Task (LLM) Solver With Human Input
+
