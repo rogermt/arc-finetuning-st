@@ -1,9 +1,3 @@
-import sys
-import os
+# arc-finetuning-st/app.py (in the home directory)
+from arc_finetuning_st.streamlit import app
 
-# Add the subdirectory to the Python path
-sys.path.append(os.path.join(os.path.dirname(__file__), "arc_finetuning_st", "streamlit"))
-
-# Import and run the Streamlit app from the subdirectory
-if __name__ == "__main__":
-    import app
