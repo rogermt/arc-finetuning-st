@@ -25,4 +25,4 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git push https://rogermt:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/rogermt/Arc-Finetuning main
+          git push https://rogermt:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/rogermt/Arc-Finetuning rogermt-patch-1
