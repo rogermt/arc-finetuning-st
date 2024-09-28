@@ -13,14 +13,14 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      
+
       - name: Set up Git
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-      
+
       - name: Push to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git push https://rogermt:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/rogermt/Arc-Finetuning main
+          git push https://HF_USERNAME:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/rogermt/Arc-Finetuning main
