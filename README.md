@@ -187,3 +187,14 @@ single batch. In total, there are 400 test cases. Moreover, `num-workers` is the
 maximum number of async calls allowed to be made to OpenAI API at any given moment.
 Finally, `sleep` is the amount of time in seconds the execution halts before moving
 onto the next batch of test cases.
+
+ metadata
+title: Arc Finetuning
+emoji: 🏃
+colorFrom: blue
+colorTo: pink
+sdk: streamlit
+sdk_version: 1.38.0
+app_file: app.py
+pinned: false
+short_description: ARC Task (LLM) Solver With Human Input
