@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main  # or your default branch name
+      - rogermt-patch-1
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
