@@ -1,7 +1,10 @@
 from typing import Tuple
+
 import streamlit as st
 from llama_index.core.tools.function_tool import async_to_sync
+
 from arc_finetuning_st.streamlit.controller import Controller
+
 
 def main() -> None:
     st.set_page_config(layout="wide")
@@ -31,7 +34,9 @@ def main() -> None:
 
     logo = '[](https://github.com/run-llama/llama-agents "Check out the llama-agents Github repo!")'
     st.title("ARC Task Solver with Human Input")
-    st.markdown(f"{logo} _Powered with LlamaIndex Worfklows_", unsafe_allow_html=True)
+    st.markdown(
+        f"{logo} _Powered with LlamaIndex Worfklows_", unsafe_allow_html=True
+    )
 
     # Sidebar
     with st.sidebar:
@@ -49,9 +54,11 @@ def main() -> None:
             key="selected_task",
             format_func=controller.radio_format_task_name,
         )
-        
+
     # Main content
-    train_col, test_col = st.columns([1, 1], vertical_alignment="top", gap="medium")
+    train_col, test_col = st.columns(
+        [1, 1], vertical_alignment="top", gap="medium"
+    )
 
     # Train Examples
     with train_col:
@@ -61,10 +68,14 @@ def main() -> None:
             if selected_task:
                 task = controller.load_task(selected_task)
                 num_examples = len(task["train"])
-                tabs = st.tabs([f"Example {ix}" for ix in range(1, num_examples + 1)])
+                tabs = st.tabs(
+                    [f"Example {ix}" for ix in range(1, num_examples + 1)]
+                )
                 for ix, tab in enumerate(tabs):
                     with tab:
-                        left, right = st.columns([1, 1], vertical_alignment="top", gap="medium")
+                        left, right = st.columns(
+                            [1, 1], vertical_alignment="top", gap="medium"
+                        )
                         with left:
                             ex = task["train"][ix]
                             grid = ex["input"]
@@ -78,7 +89,9 @@ def main() -> None:
 
     # Test Cases
     with test_col:
-        header_col, start_col, preview_col = st.columns([4, 1, 2], vertical_alignment="bottom", gap="small")
+        header_col, start_col, preview_col = st.columns(
+            [4, 1, 2], vertical_alignment="bottom", gap="small"
+        )
         with header_col:
             st.subheader("Test")
         with start_col:
@@ -92,7 +105,9 @@ def main() -> None:
         with preview_col:
             st.button(
                 "fine-tuning example",
-                on_click=async_to_sync(controller.handle_finetuning_preview_click),
+                on_click=async_to_sync(
+                    controller.handle_finetuning_preview_click
+                ),
                 use_container_width=True,
                 disabled=st.session_state.get("disable_preview_button"),
                 key="preview_button",
@@ -103,19 +118,29 @@ def main() -> None:
             if selected_task:
                 task = controller.load_task(selected_task)
                 num_cases = 1  # only do first test case for now
-                tabs = st.tabs([f"Test Case {ix}" for ix in range(1, num_cases + 1)])
+                tabs = st.tabs(
+                    [f"Test Case {ix}" for ix in range(1, num_cases + 1)]
+                )
                 for ix, tab in enumerate(tabs):
                     with tab:
-                        left, right = st.columns([1, 1], vertical_alignment="top", gap="medium")
+                        left, right = st.columns(
+                            [1, 1], vertical_alignment="top", gap="medium"
+                        )
                         with left:
                             ex = task["test"][ix]
                             grid = ex["input"]
                             fig = Controller.plot_grid(grid, kind="input")
                             st.plotly_chart(fig, use_container_width=True)
                         with right:
-                            prediction_fig = st.session_state.get("prediction", None)
+                            prediction_fig = st.session_state.get(
+                                "prediction", None
+                            )
                             if prediction_fig:
-                                st.plotly_chart(prediction_fig, use_container_width=True, key="prediction")
+                                st.plotly_chart(
+                                    prediction_fig,
+                                    use_container_width=True,
+                                    key="prediction",
+                                )
 
     # Metrics and past attempts
     with st.container():
@@ -142,7 +167,12 @@ def main() -> None:
                 hide_index=True,
                 selection_mode="single-row",
                 on_select=controller.handle_workflow_run_selection,
-                column_order=("attempt #", "passing", "critique", "rationale"),
+                column_order=(
+                    "attempt #",
+                    "passing",
+                    "critique",
+                    "rationale",
+                ),
                 key="attempts_history_df",
                 use_container_width=True,
             )
@@ -159,9 +189,12 @@ def main() -> None:
                 type="primary",
             )
         with abort_col:
+
             @st.dialog("Are you sure you want to abort the session?")
             def abort_solving() -> None:
-                st.write("Confirm that you want to abort the session by clicking 'confirm' button below.")
+                st.write(
+                    "Confirm that you want to abort the session by clicking 'confirm' button below."
+                )
                 if st.button("Confirm"):
                     controller.reset()
                     st.rerun()
@@ -172,6 +205,7 @@ def main() -> None:
                 use_container_width=True,
                 disabled=st.session_state.get("disable_abort_button"),
             )
+
 
 if __name__ == "__main__":
     main()
