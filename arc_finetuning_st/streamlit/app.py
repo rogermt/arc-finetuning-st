@@ -3,7 +3,7 @@ import streamlit as st
 from llama_index.core.tools.function_tool import async_to_sync
 from arc_finetuning_st.streamlit.controller import Controller
 
-def main():
+def main() -> None:
     st.set_page_config(layout="wide")
 
     @st.cache_resource
