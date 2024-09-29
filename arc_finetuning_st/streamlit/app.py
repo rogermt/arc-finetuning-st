@@ -41,8 +41,6 @@ def main() -> None:
             key="openai_api_key",
             on_change=controller.check_openai_api_key,
         )
-        
-    with st.sidebar:
         st.radio(
             label="Tasks",
             options=controller.task_file_names,
@@ -51,7 +49,7 @@ def main() -> None:
             key="selected_task",
             format_func=controller.radio_format_task_name,
         )
-
+        
     # Main content
     train_col, test_col = st.columns([1, 1], vertical_alignment="top", gap="medium")
 
