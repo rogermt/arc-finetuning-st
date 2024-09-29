@@ -1,0 +1,29 @@
+name: Sync to Hugging Face Space
+
+on:
+  push:
+    branches:
+      - main  # or your default branch name
+      - rogermt-patch-1
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Set up Git
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: |
+          git push https://rogermt:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/rogermt/Arc-Finetuning $BRANCH_NAME

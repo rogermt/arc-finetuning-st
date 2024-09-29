@@ -1,3 +1,14 @@
+---
+title: rc Finetuning
+sdk: streamlit
+sdk_version: 1.38.0
+emoji: 🏃
+colorFrom: blue
+colorTo: pink
+pinned: false
+short_description: ARC Task (LLM) Solver With Human Input
+---
+
 # ARC Task (LLM) Solver With Human Input
 
 The Abstraction and Reasoning Corpus ([ARC](https://github.com/fchollet/ARC-AGI)) for Artificial General Intelligence
