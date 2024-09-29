@@ -35,8 +35,15 @@ def main():
 
     # Sidebar
     with st.sidebar:
-        api_key = st.text_input("OpenAI API key:", type="password", key="openai_api_key", on_change=controller.check_openai_api_key)
-        task_selection = st.radio(
+        st.text_input(
+            "OpenAI API key:",
+            type="password",
+            key="openai_api_key",
+            on_change=controller.check_openai_api_key,
+        )
+        
+    with st.sidebar:
+        st.radio(
             label="Tasks",
             options=controller.task_file_names,
             index=0,
