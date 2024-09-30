@@ -3,9 +3,9 @@ name: Sync to Hugging Face Space
 on:
   push:
     branches:
-      - main  # or your default branch name
+      - main
       - rogermt-patch-1
-  workflow_dispatch:  # Allows manual triggering
+  workflow_dispatch:
 
 jobs:
   sync-to-hub:
@@ -16,10 +16,21 @@ jobs:
           fetch-depth: 0
           lfs: true
 
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Generate requirements.txt
+        run: |
+          poetry export -f requirements.txt --output requirements.txt --without-hashes
+
       - name: Set up Git
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
+          git add requirements.txt
+          git commit -m "Update requirements.txt" || exit 0
+          git push
 
       - name: Push to Hugging Face Space
         env:
