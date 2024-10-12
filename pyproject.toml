@@ -18,6 +18,9 @@ llama-index-program-openai = "^0.2.0"
 streamlit = "^1.38.0"
 plotly = "^5.24.1"
 pandas = "^2.2.2"
+python-dotenv = "^1.0.1"
+instructor = "^1.5.2"
+litellm = {extras = ["proxy"], version = "^1.49.2"}
 
 [tool.poetry.group.dev.dependencies]
 jupyterlab = "^4.2.5"

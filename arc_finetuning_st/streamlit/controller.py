@@ -59,7 +59,7 @@ class Controller:
     def check_openai_api_key(self) -> None:
         client = OpenAI(api_key=st.session_state.openai_api_key)._get_client()
         try:
-            client.models.list()
+            client.models.list() 
         except AuthenticationError:
             st.session_state.is_valid_api_key = False
         else:

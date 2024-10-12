@@ -125,6 +125,11 @@ class ARCTaskSolverWorkflow(Workflow):
             attempts.append(Attempt(prediction=correction))
         else:
             # starting a new correction with no previous Workflow runs
+            from arc_finetuning_st.workflows.structured import astruct_predict
+            pred: Prediction = astruct_predict(
+                Prediction, PREDICTION_PROMPT_TEMPLATE, **prompt_vars
+            )
+            e=1/0
             pred: Prediction = await self.llm.astructured_predict(
                 Prediction, PREDICTION_PROMPT_TEMPLATE, **prompt_vars
             )
